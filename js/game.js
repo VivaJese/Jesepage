@@ -1,8 +1,8 @@
 // Create the canvas
 var canvas = document.createElement("canvas");//cnavas对象，定义了一个API支持脚本化客户端绘图操作
 var ctx = canvas.getContext("2d");//getContext，cnavas对象的方法
-canvas.width = 512;
-canvas.height = 480;
+canvas.width = 700;
+canvas.height = 438;
 document.body.appendChild(canvas);
 
 // Background image
@@ -60,11 +60,12 @@ var reset = function() {
 // Update game objects
 var update = function(modifier) {
 	if (38 in keysDown
-		&& hero.y >=32
+		&& hero.y >=10
 		) {
 		hero.y -= hero.speed * modifier;
 	}
-	if (40 in keysDown) {
+	if (40 in keysDown
+		&& hero.y <=canvas.height-32) {
 		hero.y += hero.speed * modifier;
 	}
 	if (37 in keysDown) {
@@ -105,7 +106,7 @@ var render = function() {
     ctx.font = "24px Helvetica";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
-    ctx.fillText("Monsterrs caught: " + monstersCaught, 32, 32);
+    ctx.fillText("你已经抓住了" + monstersCaught + "皮皮虾！", 32, 32);
 };
 
 // The main game loop
